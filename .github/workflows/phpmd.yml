@@ -2,29 +2,28 @@
 # They are provided by a third-party and are governed by
 # separate terms of service, privacy policy, and support
 # documentation.
-# phpmd is a python tool that glues together
-# pycodestyle, pyflakes, mccabe, and third-party plugins
-# to check the style and quality of some python code.
-# More details at https://phpmd.pycqa.org/
+# PHPMD is a spin-off project of PHP Depend and 
+# aims to be a PHP equivalent of the well known Java tool PMD.
+# More details at https://phpmd.org/
 
-name: phpmd
+name: PHPMD
 
 on:
-  # push:
-  #   branches: [ $default-branch, $protected-branches ]
-  # pull_request:
-  #   # The branches below must be a subset of the branches above
-  #   branches: [ $default-branch ]
-  # schedule:
-  #   - cron: $cron-weekly
+  #push:
+  #  branches: [ $default-branch, $protected-branches ]
+  #pull_request:
+  #  # The branches below must be a subset of the branches above
+  #  branches: [ $default-branch ]
+  #schedule:
+  #  - cron: $cron-weekly
   workflow_dispatch:
 
 permissions:
   contents: read
 
 jobs:
-  phpmd:
-    name: Run phpmd scanning
+  PHPMD:
+    name: Run PHPMD scanning
     runs-on: ubuntu-latest
     permissions:
       contents: read # for checkout to fetch code
@@ -40,7 +39,7 @@ jobs:
           coverage: none
           tools: phpmd
 
-      - name: Run phpmd
+      - name: Run PHPMD
         run: phpmd . sarif codesize --reportfile phpmd-results.sarif
         continue-on-error: true
 
